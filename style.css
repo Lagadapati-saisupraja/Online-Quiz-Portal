@@ -1,0 +1,289 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative; /* Added to allow positioning of background */
+}
+
+header {
+    background-color: #13274F; /* Changed to #13274F */
+    color: white;
+    padding: 20px;
+    display: flex; /* Added flex display */
+    justify-content: flex-start; /* Align items to the start (left) */
+    border-bottom: 4px solid #ffffff; /* Added border below header */
+}
+
+.logo h1 {
+    font-size: 48px; /* Increased text size */
+    margin: 0; /* Optional: Remove default margin */
+}
+
+
+.logo {
+    margin-left: 20px; /* Optional: Add some space from the left edge */
+}
+
+
+
+/* Background Image */
+.background-image {
+    background-image: url('https://t4.ftcdn.net/jpg/04/39/13/37/240_F_439133763_FrLdhZsd5aGC23r9ATARuKJBr8ifZjIe.jpg');
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the image */
+    height: 100vh; /* Full height of the viewport */
+    position: absolute; /* Position it behind other content */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Behind all other content */
+}
+
+/* Hero Section */
+/* Hero Section */
+.hero {
+    background-image: url('https://t4.ftcdn.net/jpg/04/39/13/37/240_F_439133763_FrLdhZsd5aGC23r9ATARuKJBr8ifZjIe.jpg');
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the image */
+    height: 70vh; /* Set height to 60% of the viewport height (adjust this value as needed) */
+    display: flex; /* Flexbox to allow for alignment */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align content to the top */
+    align-items: flex-start; /* Align items to the left */
+    text-align: left; /* Align text to the left */
+    color: white; /* Change text color to white for better visibility */
+    padding: 20px; /* Add padding */
+}
+
+/* Optional: Adjust text styles inside hero section */
+.hero h2 {
+    font-size: 36px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow for better readability */
+}
+
+.hero p {
+    font-size: 18px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Add shadow for better readability */
+}
+
+.hero button {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: rgba(33, 150, 243, 0.8); /* Semi-transparent button background */
+    color: white;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add some space above the button */
+    
+}
+
+.hero button:hover {
+    background-color: rgba(25, 118, 210, 0.8); /* Darker blue on hover */
+}
+
+.features {
+    padding: 50px 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent */
+    text-align: center;
+}
+
+.features h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.feature-item {
+    margin: 20px;
+    display: inline-block;
+    width: 30%;
+}
+
+.feature-item h3 {
+    color: #2196F3; /* Change this to a suitable blue color */
+}
+
+.feature-item p {
+    color: #666; /* Change this to a darker shade or another suitable color */
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 45px; /* Increased padding */
+    border-radius: 8px;
+    width: 300px; /* Increased width */
+    text-align: center;
+    position: relative;
+    border: 2px solid #13274F; /* Added border matching header color */
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #13274F; /* Changed to header color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.auth-form button:hover {
+    background-color: green; /* Darker shade on hover */
+}
+
+.auth-form p {
+    margin-top: 10px;
+}
+
+.auth-form span {
+    color: #13274F; /* Changed to header color */
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer Section */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer .footer-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer .footer-links li {
+    display: inline;
+    margin: 0 10px;
+}
+
+footer .footer-links li a {
+    color: white;
+    text-decoration: none;
+}
+header {
+    background-color: #13274F; /* Changed to #13274F */
+    color: white;
+    padding: 20px;
+    display: flex; /* Added flex display */
+    justify-content: space-between; /* Align items to the left and right */
+    align-items: center; /* Center items vertically */
+}
+
+.header-buttons {
+    margin-right: 20px; /* Optional: Add some space from the right edge */
+}
+
+.header-buttons button {
+    background: none; /* No background */
+    color: white; /* White text */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding for the button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    border-radius: 4px; /* Optional: rounded corners */
+    text-decoration: none; /* No underline */
+    font-size: 22px; /* Optional: adjust text size */
+}
+
+.header-buttons button:hover {
+    color: #2196F3; /* Change text color on hover for better visibility */
+}
+/* Change color for Sign In link */
+
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 45px; /* Increased padding */
+    border-radius: 8px;
+    width: 300px; /* Increased width */
+    text-align: center;
+    position: relative;
+    border: 2px solid #13274F; /* Added border matching header color */
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+/* Change color for Sign In link */
+.auth-form #signup-form span {
+    color: #2196F3; /* Blue color for Sign In */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Change color for Sign Up link */
+.auth-form #signin-form span {
+    color: #4CAF50; /* Green color for Sign Up */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Optional: Hover effects for the links */
+.auth-form #signup-form span:hover {
+    color: #1E88E5; /* Darker blue on hover */
+}
+
+.auth-form #signin-form span:hover {
+    color: #388E3C; /* Darker green on hover */
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,50,0.8),rgba(0,0,50,0.8)),url(https://marketplace.canva.com/EAFZcmTpKas/1/0/1600w/canva-video-intro-portada-fondo-background-simple-rosa-dorado-U93tpA4NMDA.jpg);
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+        .form-box {
+            width: 90%;
+            max-width: 450px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: #fff;
+            padding: 50px 60px 70px;
+            text-align: center;
+        }
+        .form-box h1 {
+            font-size: 30px;
+            margin-bottom: 60px;
+            color: #3c00a0;
+            position: relative;
+        }
+        .form-box h1::after {
+            content: '';
+            width: 30px;
+            height: 4px;
+            border-radius: 3px;
+            background: #3c00a0;
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translate(-50%);
+        }
+        .input-field {
+            background: #eaeaea;
+            margin: 15px 0;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+        }
+        input {
+            width: 100%;
+            background: transparent;
+            border: 0;
+            outline: 0;
+            padding: 18px 15px;
+        }
+        form p {
+            text-align: left;
+            font-size: 13px;
+        }
+        form p a {
+            text-decoration: none;
+            color: #3c00a0;
+        }
+        .btn-field {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-field button {
+            flex-basis: 100%;
+            background: #3c00a0;
+            color: #fff;
+            height: 40px;
+            border-radius: 20px;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+            transition: background 1s;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #3c00a0;
+            padding: 20px 50px;
+            color: white;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .header-buttons button {
+            padding: 10px 25px;
+            background-color: white;
+            color: #3c00a0;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>QuizMaster</h1>
+        </div>
+        <div class="header-buttons">
+            <button onclick="window.location.href='/auth/signin'">Sign In</button>
+            <button onclick="window.location.href='/auth/signup'">Sign Up</button>
+            <button onclick="window.location.href='/'">Home</button>
+        </div>
+    </header>
+    <div class="container">
+        <div class="form-box">
+            <h1>Sign Up</h1>
+            <form id="signupForm">
+                <div class="input-group">
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" placeholder="Name" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button type="submit">Sign up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            const existingUser = users.find(user => user.email === email);
+
+            if (existingUser) {
+                alert("Email already exists! Please use a different email.");
+            } else {
+                const newUser = { name, email, password };
+                users.push(newUser);
+                localStorage.setItem("users", JSON.stringify(users));
+                alert("Sign-up successful!");
+
+                window.location.href = "/auth/signin";
+            }
+        });
+    </script>
+</body>
+</html>

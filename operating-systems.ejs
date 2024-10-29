@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            color: #333;
+        }
+
+        /* Header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #3c00a0;
+            padding: 15px 50px;
+            color: white;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .header-buttons button {
+            padding: 10px 20px;
+            background-color: white;
+            color: #3c00a0; /* Text color */
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #e0e0e0; /* Light gray on hover */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #3c00a0;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f7f7f7; /* Light gray for question containers */
+        }
+
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .options li {
+            margin: 10px 0;
+        }
+
+        button.submit, button.restart {
+            background-color: #3c00a0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: block;
+            margin: 20px auto;
+            transition: background-color 0.3s ease;
+        }
+
+        button.submit:hover, button.restart:hover {
+            background-color: #005f4f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 style="color: white;">QuizMaster</h1>
+        </div>
+        <div class="header-buttons">
+            <button onclick="window.location.href='<%= topicUrl %>'">Home</button>
+            <button onclick="window.location.href='<%= logoutUrl %>'">Log Out</button>
+        </div>
+    </header>
+
+    <div class="container" id="quizContainer">
+        <h1>Operating Systems Quiz</h1>
+
+        <div class="question">
+            <h2>1. What is the role of the operating system?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q1" value="a"> Manages hardware resources and provides services for applications</li>
+                <li><input type="radio" name="q1" value="b"> Compiles and runs programs</li>
+                <li><input type="radio" name="q1" value="c"> Controls only the CPU</li>
+                <li><input type="radio" name="q1" value="d"> None of the above</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h2>2. Which of the following is a type of operating system?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q2" value="a"> Batch Operating System</li>
+                <li><input type="radio" name="q2" value="b"> Time-Sharing Operating System</li>
+                <li><input type="radio" name="q2" value="c"> Distributed Operating System</li>
+                <li><input type="radio" name="q2" value="d"> All of the above</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h2>3. What is a deadlock in an operating system?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q3" value="a"> A situation where two or more processes are unable to proceed</li>
+                <li><input type="radio" name="q3" value="b"> A situation where the CPU is overloaded</li>
+                <li><input type="radio" name="q3" value="c"> A condition where a file is locked</li>
+                <li><input type="radio" name="q3" value="d"> None of the above</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h2>4. What is the purpose of a scheduler in an operating system?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q4" value="a"> To allocate CPU time to various processes</li>
+                <li><input type="radio" name="q4" value="b"> To manage memory usage</li>
+                <li><input type="radio" name="q4" value="c"> To handle system calls</li>
+                <li><input type="radio" name="q4" value="d"> To control file access</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h2>5. What is virtual memory in an OS?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q5" value="a"> A technique that allows execution of processes that may not be completely in memory</li>
+                <li><input type="radio" name="q5" value="b"> A process scheduler</li>
+                <li><input type="radio" name="q5" value="c"> A memory management hardware</li>
+                <li><input type="radio" name="q5" value="d"> A hardware device that stores data</li>
+            </ul>
+        </div>
+
+        <button class="submit" onclick="submitQuiz()">Submit Quiz</button>
+    </div>
+
+    <div class="container" id="resultContainer" style="display: none;">
+        <h1>Your Score: <span id="score"></span></h1>
+        <button class="restart" onclick="restartQuiz()">Take Quiz Again</button>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'a',
+            q2: 'd',
+            q3: 'a',
+            q4: 'a',
+            q5: 'a'
+        };
+
+        function submitQuiz() {
+            let score = 0;
+
+            // Check answers
+            for (let question in correctAnswers) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                if (selected && selected.value === correctAnswers[question]) {
+                    score++;
+                }
+            }
+
+            // Display score
+            document.getElementById('score').innerText = `${score} out of ${Object.keys(correctAnswers).length}`;
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'block';
+        }
+
+        function restartQuiz() {
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('resultContainer').style.display = 'none';
+            // Reset all radio buttons
+            const radios = document.querySelectorAll('input[type="radio"]');
+            radios.forEach(radio => {
+                radio.checked = false;
+            });
+        }
+    </script>
+</body>
+</html>

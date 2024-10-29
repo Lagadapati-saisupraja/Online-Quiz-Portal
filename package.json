@@ -1,0 +1,16 @@
+{
+    "name": "online-quiz-platform",
+    "version": "1.0.0",
+    "description": "A platform for online quizzes",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "ejs": "^3.1.10",
+        "express": "^4.21.1"
+    },
+    "author": "",
+    "license": "ISC",
+    "keywords": []
+}

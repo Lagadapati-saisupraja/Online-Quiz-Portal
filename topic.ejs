@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Topics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #3c00a0;
+            padding: 20px 50px;
+            color: white;
+            height: 80px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .header-buttons button {
+            padding: 10px 25px;
+            background-color: white;
+            color: #3c00a0;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #4b0082;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .quiz-list {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .quiz-item {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            width: 250px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quiz-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .quiz-item h2 {
+            font-size: 1.4rem;
+            color: #3c00a0;
+            margin-bottom: 10px;
+        }
+
+        .quiz-item p {
+            font-size: 1rem;
+            color: #5d4037;
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .quiz-item {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        function redirectToPage(subject) {
+            window.location.href = `/auth/${subject}`; // Adjusted the path
+        }
+    </script>
+    
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 style="color: white;">QuizMaster</h1>
+        </div>
+        <div class="header-buttons">
+            <button onclick="window.location.href='topic.ejs'">Home</button>
+            <button onclick="window.location.href='index.ejs'">Log Out</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Available Quiz Topics</h1>
+        <ul class="quiz-list">
+            <li class="quiz-item" onclick="redirectToPage('dbms')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjwHt5c_12GgQ35YzQTpWNmVCf_yfoRpq_Q&s" alt="DBMS Icon">
+                <h2>DBMS</h2>
+                <p>Database Management Systems</p>
+            </li>
+            <li class="quiz-item" onclick="redirectToPage('oops')">
+                <img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" alt="OOP Icon">
+                <h2>OOPs</h2>
+                <p>Object-Oriented Programming (Java)</p>
+            </li>
+            <li class="quiz-item" onclick="redirectToPage('operating-systems')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnZOTMiX4wk_pv1MeJRU8f2jajV8JSf5ydaw&s" alt="Operating Systems Icon">
+                <h2>Operating Systems</h2>
+                <p>Deadlock in OS</p>
+            </li>
+            <li class="quiz-item" onclick="redirectToPage('data-structures')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8Vj9bQB70oMuNEUOOS2Hnv-DlxxYEAQQj5A&s" alt="Data Structures Icon">
+                <h2>Data Structures</h2>
+                <p>Binary Tree</p>
+            </li>
+            <li class="quiz-item" onclick="redirectToPage('computer-networks')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmng9RH6Mh8_lbWjmf6pH92UirhtT9KgUGQg&s" alt="Computer Networks Icon">
+                <h2>Computer Networks</h2>
+                <p>Network Architecture and Protocols</p>
+            </li>
+            <li class="quiz-item" onclick="redirectToPage('algorithms')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoD9GrTAn6u1fu-D9hXJYAyfFiMz4eSoBGtQ&s" alt="Algorithms Icon">
+                <h2>Algorithms</h2>
+                <p>Flow of Execution</p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

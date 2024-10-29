@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            color: #333;
+        }
+
+        /* Header styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #3c00a0;
+            padding: 15px 50px;
+            color: white;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .header-buttons button {
+            padding: 10px 20px;
+            background-color: white;
+            color: #3c00a0; /* Text color */
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+            background-color: #e0e0e0; /* Light gray on hover */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #3c00a0;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f7f7f7; /* Light gray for question containers */
+        }
+
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .options li {
+            margin: 10px 0;
+        }
+
+        button.submit, button.restart {
+            background-color: #3c00a0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: block;
+            margin: 20px auto;
+            transition: background-color 0.3s ease;
+        }
+
+        button.submit:hover, button.restart:hover {
+            background-color: #005f4f; /* Change this color as desired for hover effect */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1 style="color: white;">QuizMaster</h1>
+        </div>
+        <div class="header-buttons">
+            <button onclick="window.location.href='<%= topicUrl %>'">Home</button>
+            <button onclick="window.location.href='<%= logoutUrl %>'">Log Out</button>
+        </div>        
+    </header>
+
+    <div class="container" id="quizContainer">
+        <h1>OOP Quiz</h1>
+
+        <div class="question">
+            <h2>1. What is the main principle of OOP?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q1" value="a"> Encapsulation</li>
+                <li><input type="radio" name="q1" value="b"> Inheritance</li>
+                <li><input type="radio" name="q1" value="c"> Polymorphism</li>
+                <li><input type="radio" name="q1" value="d"> All of the above</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h2>2. What does encapsulation mean?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q2" value="a"> Hiding the internal state and requiring all interaction to be performed through an object's methods</li>
+                <li><input type="radio" name="q2" value="b"> The ability of different objects to respond to the same method in different ways</li>
+                <li><input type="radio" name="q2" value="c"> The process of creating a new class based on an existing class</li>
+                <li><input type="radio" name="q2" value="d"> None of the above</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h2>3. What is inheritance?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q3" value="a"> A way to create a new class based on an existing class</li>
+                <li><input type="radio" name="q3" value="b"> A way to hide data</li>
+                <li><input type="radio" name="q3" value="c"> A method of creating multiple objects</li>
+                <li><input type="radio" name="q3" value="d"> All of the above</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h2>4. What does polymorphism allow you to do?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q4" value="a"> Use the same interface for different data types</li>
+                <li><input type="radio" name="q4" value="b"> Prevent access to certain components of an object</li>
+                <li><input type="radio" name="q4" value="c"> Create a single function that can work on different types</li>
+                <li><input type="radio" name="q4" value="d"> Both a and c</li>
+            </ul>
+        </div>
+
+        <button class="submit" onclick="submitQuiz()">Submit Quiz</button>
+    </div>
+
+    <div class="container" id="resultContainer" style="display: none;">
+        <h1>Your Score: <span id="score"></span></h1>
+        <button class="restart" onclick="restartQuiz()">Take Quiz Again</button>
+    </div>
+
+    <script>
+        const correctAnswers = {
+            q1: 'd', // All of the above
+            q2: 'a', // Hiding the internal state and requiring all interaction to be performed through an object's methods
+            q3: 'a', // A way to create a new class based on an existing class
+            q4: 'd'  // Both a and c
+        };
+
+        function submitQuiz() {
+            let score = 0;
+
+            // Check answers
+            for (let question in correctAnswers) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                if (selected && selected.value === correctAnswers[question]) {
+                    score++;
+                }
+            }
+
+            // Display score
+            document.getElementById('score').innerText = `${score} out of ${Object.keys(correctAnswers).length}`;
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'block';
+        }
+
+        function restartQuiz() {
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('resultContainer').style.display = 'none';
+            // Reset all radio buttons
+            const radios = document.querySelectorAll('input[type="radio"]');
+            radios.forEach(radio => {
+                radio.checked = false;
+            });
+        }
+    </script>
+</body>
+</html>
